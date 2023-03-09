@@ -1,4 +1,3 @@
-# Solution
 
 1. How many users are holding the pancake swap token 'cake' ?
 
