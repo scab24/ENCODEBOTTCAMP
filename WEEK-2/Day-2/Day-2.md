@@ -2,7 +2,7 @@
 
 - Contract:
     - Transaction Details => https://testnet.bscscan.com/tx/0xd6a3b44263962ad75abe8d5fb873
-    - Contract => https://testnet.bscscan.com/address/0x7abbe44f0d6338596a3a5dd11eefd1fb4435b749
+    - Contract => https://testnet.bscscan.com/address/0x7abbe44f0d6338596a3a5dd11eefd1fb4435b749#code
 
 ```js
 // SPDX-License-Identifier: MIT
