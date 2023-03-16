@@ -3,7 +3,7 @@
 ### ABI
 - https://gnidan.github.io/abi-to-sol/
 
-´´´js
+```js
 [
 	{
 		"inputs": [],
