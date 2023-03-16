@@ -6,7 +6,7 @@
     This means that the player counter is incremented even if the player does not meet the requirements to join the game.
     
 2. The addNewPlayer function does not validate the value sent by the player. 
-    This means that any player who sends ether to the contract with an amount different from 500000 can be accepted and will be added to the list of       players.
+    This means that any player who sends ether to the contract with an amount different from 500000 can be accepted and will be added to the list of players.
     
 3. Incorrect variable implementation order:
 
@@ -17,7 +17,7 @@
     
 4. Using block.timestamp as a random number generator
     Winner selection is predictable: The pickWinner function relies on block.timestamp to select a winner. 
-    If an attacker can predict the value of block.timestamp at the time the pickWinner function is executed, then he can manipulate the outcome of the     game and ensure that he wins.
+    If an attacker can predict the value of block.timestamp at the time the pickWinner function is executed, then he can manipulate the outcome of the game and ensure that he wins.
     
 5. It does not have a withdrawal function.
 
