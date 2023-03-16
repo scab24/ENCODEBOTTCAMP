@@ -1,6 +1,7 @@
 ## Homework 8
 
-```
+```js
+
 1. Function addNewPlayer, the num_players counter is incremented before checking if the player has paid the 500000 entry fee. This means that the player counter is incremented even if the player does not meet the requirements to join the game.
 2. The addNewPlayer function does not validate the value sent by the player. This means that any player who sends ether to the contract with an amount different from 500000 can be accepted and will be added to the list of players.
 3. Incorrect variable implementation order:
@@ -14,6 +15,7 @@
 6. Anyone can call the functions, it has no security.
 7. In the distributePrize function, the for loop has an error in the condition, as it should be < prize_winners.length instead of <= prize_winners.length, as the index starts at zero and should be less than the length of the array.
 8. It has visibility failures in the functions, it uses public when it is not necessary.
+
 ```
 
 
