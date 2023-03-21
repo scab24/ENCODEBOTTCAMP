@@ -1,6 +1,6 @@
 # Homework 10
 
-- file:///Users/secoalba/Downloads/Homework10.pdf
+- [file:///Users/secoalba/Downloads/Homework10.pdf]
 
 ## Code + Contract Test
 
