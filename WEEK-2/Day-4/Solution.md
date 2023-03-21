@@ -1,4 +1,4 @@
-# Homwork 8
+# Homework 8
 
 
 ## Code for Badgercoin
