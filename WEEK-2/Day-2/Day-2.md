@@ -1,4 +1,4 @@
-## Homework 7
+## Homework 6
 
 - Contract:
     - Transaction Details => https://testnet.bscscan.com/tx/0xd6a3b44263962ad75abe8d5fb873
