@@ -124,7 +124,7 @@ contract GasContract is Ownable, Constants {
 
   
 
-   constructor(address[] memory _admins, uint256 _totalSupply) {
+constructor(address[] memory _admins, uint256 _totalSupply) {
     contractOwner = msg.sender;
     totalSupply = _totalSupply;
     uint256 admin = _admins.length;
@@ -154,11 +154,6 @@ contract GasContract is Ownable, Constants {
         unchecked{++ii}
     }
 }
-
-
-
-
-    }
 //=======================================================================================
     function getPaymentHistory() public payable returns (History[] memory paymentHistory_) { //@audit
         assembly {
