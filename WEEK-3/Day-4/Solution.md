@@ -6,7 +6,6 @@ pragma solidity 0.8.0;
 
 import "./Ownable.sol";
 
-
 contract GasContract is Ownable {
 
 //=======================================================================================
@@ -109,9 +108,6 @@ contract GasContract is Ownable {
 
 //=======================================================================================
 
-
-  
-
     constructor(address[] memory _admins, uint256 _totalSupply) {
         contractOwner = msg.sender;
         totalSupply = _totalSupply;
@@ -133,33 +129,21 @@ contract GasContract is Ownable {
         }
     }
 
-//=======================================================================================
     function getPaymentHistory() public payable returns (History[] memory paymentHistory_) { //@audit
         assembly {
             paymentHistory_ := paymentHistory.slot
         }
     }
 
-  function checkForAdmin(address _user) public view returns (bool admin_) {
-    assembly {
-        let adminCount := sload(administrators.slot)
-        let ii := 0
-        let admin := 0
-
-        for { } lt(ii, adminCount) { } {
-            let adminAddr := sload(add(administrators.slot, mul(add(ii, 1), 32)))
-            admin := or(admin, eq(adminAddr, _user))
-            ii := add(ii, 1)
+    function checkForAdmin(address _user) public view returns (bool admin_) {
+        bool admin = false;
+        for (uint256 ii = 0; ii < administrators.length; ii++) {
+            if (administrators[ii] == _user) {
+                admin = true;
+            }
         }
-
-        admin_ := admin
+        return admin;
     }
-}
-
-
-
-
-
 
     function balanceOf(address _user) public view returns (uint256 balance_) {
         uint256 balance = balances[_user];
@@ -175,7 +159,6 @@ contract GasContract is Ownable {
         }
         return mode;
     }
-
 
     function addHistory(address _updateAddress, bool _tradeMode) public returns (bool status_, bool tradeMode_){ //@audit
         History memory history;
@@ -196,8 +179,7 @@ contract GasContract is Ownable {
         return ((status[0] == true), _tradeMode);
     }
 
-
-    function getPayments(address _user) public view returns (Payment[] memory payments_){//@audit
+    function getPayments(address _user) public view returns (Payment[] memory payments_){
         assembly {
                 if eq(_user, 0) {
                     mstore(0x00, "zero address")
@@ -207,24 +189,25 @@ contract GasContract is Ownable {
         return payments[_user];
     }
 
-
-function transfer(
+    function transfer(
         address _recipient,
         uint256 _amount,
         string calldata _name
     ) public returns (bool status_) {
         address senderOfTx = msg.sender;
+
         require(
             balances[senderOfTx] >= _amount,
-            "Gas Contract - Transfer function - Sender has insufficient Balance"
-        );
+            "Sender has insufficient Balance" );
         require(
             bytes(_name).length < 9,
-            "Gas Contract - Transfer function -  The recipient name is too long, there is a max length of 8 characters"
-        );
+            "there is a max length of 8 characters" );
+
         balances[senderOfTx] -= _amount;
         balances[_recipient] += _amount;
+
         emit Transfer(_recipient, _amount);
+
         Payment memory payment;
         payment.admin = address(0);
         payment.adminUpdated = false;
@@ -235,15 +218,12 @@ function transfer(
         payment.paymentID = ++paymentCounter;
         payments[senderOfTx].push(payment);
         bool[] memory status = new bool[](tradePercent);
-        for (uint256 i = 0; i < tradePercent; i++) {
+        
+        for (uint256 i; i < tradePercent; ++i) {
             status[i] = true;
         }
         return (status[0] == true);
     }
-
-
-
-
 
     function updatePayment( address _user, uint256 _ID, uint256 _amount, PaymentType _type ) public onlyAdminOrOwner {
 
@@ -282,8 +262,6 @@ function transfer(
         }
     }
 
-
-
     function addToWhitelist(address _userAddrs, uint256 _tier) public onlyAdminOrOwner { //@audit
         require(_tier < 255, "should not be greater than 255");
 
@@ -295,8 +273,6 @@ function transfer(
 
         emit AddedToWhitelist(_userAddrs, _tier);
     }
-
-
 
     function whiteTransfer( //@audit
         address _recipient,
@@ -321,8 +297,5 @@ function transfer(
 
         emit WhiteListTransfer(_recipient);
     }
-
 }
-
-
 ```
