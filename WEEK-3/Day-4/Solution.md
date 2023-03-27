@@ -29,7 +29,7 @@ contract GasContract is Ownable, Constants {
 
 //=======================================================================================
 
-    uint256 public totalSupply; // cannot be updated
+    uint256 public immutable totalSupply; // cannot be updated
     uint256 public paymentCounter;
     uint256 public tradePercent = 12;
     uint256 public tradeMode;
@@ -97,14 +97,14 @@ contract GasContract is Ownable, Constants {
 //=======================================================================================
 
    modifier onlyAdminOrOwner() {
-    address senderOfTx = msg.sender;
-    require(checkForAdmin(senderOfTx) || senderOfTx == contractOwner, "Gas Contract Only Admin Check - Caller not authorized");
-    _;
-}
+        address senderOfTx = msg.sender;
+        require(checkForAdmin(senderOfTx) || senderOfTx == contractOwner, "Caller not authorized");
+        _;
+    }
 
 
-  modifier checkIfWhiteListed(address sender) {
-        require(msg.sender == sender && whitelist[sender] > 0 && whitelist[sender] < 4, "Gas Contract CheckIfWhiteListed modifier : Access denied");
+    modifier checkIfWhiteListed(address sender) {
+        require(msg.sender == sender && whitelist[sender] > 0 && whitelist[sender] < 4, "Access denied");
         _;
     }
 
