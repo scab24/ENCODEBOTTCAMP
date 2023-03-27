@@ -96,9 +96,8 @@ contract GasContract is Ownable, Constants {
 
 //=======================================================================================
 
-   modifier onlyAdminOrOwner() {
-        address senderOfTx = msg.sender;
-        require(checkForAdmin(senderOfTx) || senderOfTx == contractOwner, "Caller not authorized");
+    modifier onlyAdminOrOwner() {
+        require(checkForAdmin(msg.sender) || msg.sender == contractOwner, "Caller not authorized");
         _;
     }
 
