@@ -39,6 +39,7 @@ contract BadgerCoin is ERC20, Pausable {
 
 
    function mint(address account, uint256 amount) public whenNotPaused{
+        require(!paused(), "paused");
         _mint(account, amount);
    }
 
@@ -283,10 +284,10 @@ Traces:
     │   └─ ← ()
     └─ ← ()
 
-[PASS] testMint() (gas: 40304)
+[PASS] testMint() (gas: 40480)
 Traces:
-  [40304] BadgerCoinTest::testMint() 
-    ├─ [31728] BadgerCoin::mint(0x2B5AD5c4795c026514f8317c7a215E218DcCD6cF, 100) 
+  [40480] BadgerCoinTest::testMint() 
+    ├─ [31904] BadgerCoin::mint(0x2B5AD5c4795c026514f8317c7a215E218DcCD6cF, 100) 
     │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: 0x2B5AD5c4795c026514f8317c7a215E218DcCD6cF, value: 100)
     │   └─ ← ()
     ├─ [607] BadgerCoin::balanceOf(0x2B5AD5c4795c026514f8317c7a215E218DcCD6cF) [staticcall]
@@ -422,10 +423,10 @@ Logs:
   Player alice allowance 1000000000000000000
 
 Traces:
-  [802583] BadgerCoinTest::setUp() 
-    ├─ [698429] → new BadgerCoin@0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+  [809996] BadgerCoinTest::setUp() 
+    ├─ [705835] → new BadgerCoin@0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
     │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: BadgerCoinTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496], value: 1000000000000000000000000)
-    │   └─ ← 2919 bytes of code
+    │   └─ ← 2956 bytes of code
     ├─ [0] VM::addr(<pk>) [staticcall]
     │   └─ ← 0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf
     ├─ [0] VM::addr(<pk>) [staticcall]
@@ -458,8 +459,8 @@ Traces:
 
 [PASS] test_BalanceOf_DoesNotHaveBalance(address) (runs: 256, μ: 8039, ~: 8039)
 Traces:
-  [8039] BadgerCoinTest::test_BalanceOf_DoesNotHaveBalance(0x82721844D5C8b05f3814F0FC275F13D05ae8a92F) 
-    ├─ [2607] BadgerCoin::balanceOf(0x82721844D5C8b05f3814F0FC275F13D05ae8a92F) [staticcall]
+  [8039] BadgerCoinTest::test_BalanceOf_DoesNotHaveBalance(0x0000000000000000000000000000000000000060) 
+    ├─ [2607] BadgerCoin::balanceOf(0x0000000000000000000000000000000000000060) [staticcall]
     │   └─ ← 0
     └─ ← ()
 
@@ -494,7 +495,7 @@ Traces:
     │   └─ ← "ERC20: transfer from the zero address"
     └─ ← ()
 
-Test result: FAILED. 13 passed; 1 failed; finished in 7.56ms
+Test result: FAILED. 13 passed; 1 failed; finished in 7.35ms
 
 Failing tests:
 Encountered 1 failing test in test/badgerupdater.sol:BadgerCoinTest
