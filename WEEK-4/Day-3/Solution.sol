@@ -3,6 +3,7 @@
 ## Code
 
 ```js
+
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.19;
@@ -206,6 +207,7 @@ contract BadgerCoinTest is Test {
         vm.assume(amount0 > 0);
     }
 }
+
 ```
 
 
@@ -499,4 +501,5 @@ Encountered 1 failing test in test/badgerupdater.sol:BadgerCoinTest
 [FAIL. Reason: Error != expected error: NH{q != Arithmetic over/underflow] testUintMax() (gas: 49686)
 
 Encountered a total of 1 failing tests, 13 tests succeeded
+
 ```
