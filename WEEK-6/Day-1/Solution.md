@@ -211,7 +211,7 @@ if(msg.value == 1 eth);
 - Correct use of the numberInvestors variable
 
 
-## [9] Bad implementation of the "for" loop
+## [10] Bad implementation of the "for" loop
 
 ### Proof of concept
 
@@ -232,7 +232,7 @@ for (uint256 i = 0; i <= investors.length; i++) {
 for (uint256 i = 0; i < investors.length; i++) {
 ```
 
-## [10] the use of transfer may have some limitations in case the receiver is a contract with a fallback function.
+## [11] the use of transfer may have some limitations in case the receiver is a contract with a fallback function.
 
 ### Proof of concept
 
