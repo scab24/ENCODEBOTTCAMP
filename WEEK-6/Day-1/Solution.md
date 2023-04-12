@@ -158,7 +158,7 @@ The same person can call the same function more than once, creating an accountin
 ### Recommendation:
 ```js
   modifier onlyAdmin(){ 
-        if (msg.sender==role){  //@audit => //never initialice
+        if (msg.sender==role){ 
             _;
         }
     }
