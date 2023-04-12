@@ -246,7 +246,8 @@ for (uint256 i = 0; i <= investors.length; i++) {
 - Therefore, the necessary fix is to change the loop condition to i < investors.length to ensure that only valid indexes are accessed.
 
 ```js
-for (uint256 i = 0; i < investors.length; i++) {
+uint256 inv = investors.length;
+for (uint256 i = 0; i < inv; i++) {
 ```
 
 ## [11] the use of transfer may have some limitations in case the receiver is a contract with a fallback function.
