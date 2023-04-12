@@ -2,16 +2,33 @@
 # Homework 20
 
 
-## conditions of contract
-
+## Conditions of contract
+```js
 - they need to send 1 ETH to join
 - 200 players
 - Once 200 players have entered, the UI will be notified by the
     payDividends event, which will then pick the top investors and pay them
     some dividends.
 - The remaining balance will be kept as profit for the developers."
+```
 
 ========================================
+
+
+- [1] Lack of zero address checks on ecrecover
+- [2] Initialized variables
+- [3] Unused variables
+- [4] Variables not updated
+- [5] The same person can call the same function more than once
+- [6] Use tx.origin instead of msg.sender
+- [7] Error in the msg.value request
+- [8] Anyone can call the function "makePayout" and "payOutDividends".
+- [9] Logical error in the distribution of funds
+- [10] Bad implementation of the "for" loop
+- [11] the use of transfer may have some limitations in case the receiver is a contract with a fallback function.
+
+========================================
+
 ## [1] Lack of zero address checks on ecrecover
 
 ### Proof of concept
